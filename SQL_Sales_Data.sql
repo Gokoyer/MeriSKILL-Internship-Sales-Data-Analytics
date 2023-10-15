@@ -1,11 +1,5 @@
 --This is the first project from MeriSKILL Internship Program
 
-/*Purpose: Analyze sales data to identify trends, top-selling products, and revenue metrics for business decision-making.
-Description: In this project, you will dive into a large sales dataset to extract valuable insights. You will explore sales 
-trends over time, identify the best-selling products, calculate revenue metrics such as total sales and profit margins, and
-create visualizations to present your findings effectively. This project showcases your ability to manipulate and derive 
-insights from large datasets, enabling you to make data-driven recommendations for optimizing sales strategies. */
-
 --Overview of the Sales Dataset
 
 SELECT 
@@ -63,28 +57,6 @@ SELECT *,
 FROM [dbo].[MeriSKILL Sales Data_1]
 )
 DELETE FROM CTE WHERE RN<>1
-
---To delete Duplicates without keeping original
-WITH CTE AS
-   (
-SELECT *,
-   R = RANK() OVER (ORDER BY 
-      [Order ID], 
-	  [Product], 
-	  [Quantity Ordered],
-	  [Price Each], 
-	  [Order Date], 
-	  [Purchase Address], 
-	  [Month], 
-	  [Sales], 
-	  [City],
-	  [Hour])
-FROM
-   [dbo].[MeriSKILL Sales Data_1])
-DELETE 
-   CTE
-WHERE 
-   R IN (SELECT R FROM CTE GROUP BY R HAVING COUNT(*)>1)
 
 --CREATE COLUMN FOR DISTINCT ORDER ID TO ASCERTAIN NUMBER FOR PURCHASE
 
